@@ -1,191 +1,68 @@
+<!-- Declared the doctype as well as the language in the HTML -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Fontawesome, CDN taken from cdnjs.com-->
+    <!-- Bootstrap, CDN taken from (https://www.bootstrapcdn.com/) Update -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css" />
+    
+    <!-- Fontawesome, CDN taken from (https://cdnjs.com/libraries/font-awesome) Update-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" type="text/css"/>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
-    <!-- CDN for hover effects -->
+    
+    <!-- CDN for hover effects (https://cdnjs.com/libraries/hover.css) Update -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" 
         integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg==" crossorigin="anonymous" type="text/css"/>
+    
     <!-- Custom script-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <!-- CDN for the email js -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-    <!-- script associate the user_id to emailjs function-->
-    <script>
-        (function() {
-            emailjs.init("user_9UPvI1Hs4JHGtyozwple6");
-        })();
-    </script>
+    
     {% block styles %}
     {% endblock %}
-    <title>Home Cooking</title>
+    
+    <!-- Title of the site -->
+    <title></title>
     <!-- This is for the favicon icon in the header -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/utensils-solid.svg') }}" type="image/jpg" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='#') }}" type="image/jpg" />
 </head>
 
 <body>
+    <!-- Header placeholder -->
     <header>
-        <!-- The drop down option which would be used when the user have logged in and wants to visit their profile page-->
-        <ul id="myprofile-dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{{ url_for('edit_username', username=session['user']) }}">Edit Username</a></li>
-            <li><a href="{{ url_for('edit_password', username=session['user']) }}">Edit Password</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        </ul>
-        <nav class="navbar-fixed nav-extended text-shadow">
-            <!-- Main navigation navbar with the profile link connected to the session -->
-            <div class="nav-wrapper">
-            <a href="{{ url_for('get_recipes') }}" class="brand-logo">Home Cooking</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-            <ul class="right hide-on-med-and-down">
-            <!-- If the user is logged in, display the following links -->
-            {% if session.user %}
-                <li><a href="{{ url_for('get_my_recipes') }}">My Recipes</a></li>
-                <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                <!-- if the user is admin, then display the manage meal type-->
-                {% if session.user|lower == "admin"|lower %}
-                    <li><a href="{{ url_for('get_meals') }}">Manage Meal Type</a></li>
-                {% endif %}
-                <!-- Dropdown Trigger -->
-                <li><a class="dropdown-trigger" href="{{ url_for('profile', username=session['user']) }}" data-target="myprofile-dropdown">My Profile<i class="fas fa-caret-down right"></i></a></li>
-                <li><a class="modal-trigger" href="#contact-us-modal">Contact Us</a></li>                
-            {% else %}
-                <li><a href="{{ url_for('login') }}">Log In</a></li>
-                <li><a href="{{ url_for('registration') }}">Register</a></li>
-                <!-- The modal trigger used for the contact us-->
-                <li><a class="modal-trigger" href="#contact-us-modal">Contact Us</a></li>
-            {% endif %}
-            </ul>
-            </div>
+        
+        <!-- Navigation placeholder -->
+        <nav>
+        
         </nav>
 
-         <!-- The drop down option which would be used when the user have logged in and wants to visit their profile page-->
-        <ul id="myprofile-dropdown2" class="dropdown-content">
-            <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{{ url_for('edit_username', username=session['user']) }}">Edit Username</a></li>
-            <li><a href="{{ url_for('edit_password', username=session['user']) }}">Edit Password</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        </ul>
-        <!-- Mobile navigation sidenav -->
-        <ul class="sidenav" id="mobile-demo">
-            <li><h4 class="centre-align orange accent-1 black-text text-darken-4">Home Cooking</h4></li>
-                <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
-                <!-- If the user is logged in, display the following links -->
-                {% if session.user %}
-                    <li><a href="{{ url_for('get_my_recipes') }}">My Recipes</a></li>
-                    <li><a href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                    <!-- if the user is admin, then display the manage meal type-->
-                    {% if session.user|lower == "admin"|lower %}
-                        <li><a href="{{ url_for('get_meals') }}">Manage Meal Type</a></li>
-                    {% endif %}
-                    <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-trigger" href="{{ url_for('profile', username=session['user']) }}" data-target="myprofile-dropdown2">My Profile<i class="fas fa-caret-down right"></i></a></li>
-                    <li><a class="modal-trigger" href="#contact-us-modal">Contact Us</a></li>                
-                {% else %}
-                    <li><a href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a href="{{ url_for('registration') }}">Register</a></li>
-                    <!-- The modal trigger used for the contact us-->
-                    <li><a class="modal-trigger" href="#contact-us-modal">Contact Us</a></li>
-                {% endif %}
-        </ul>
     </header>
-    
-    <!--two block stuctures to be in and out of the aligned div-->
-    {% block structure %}
-        <main class="container">
-            {% block content %}
-            {% endblock %}
-        </main>
-    {% endblock %}
+        
+        <!-- Content placeholder which will be placed within that block -->
+        {% block content %}
+        {% endblock %}
 
-    <!-- Contact Modal Structure -->
-    <div id="contact-us-modal" class="modal modal-fixed-footer">
-        <form onsubmit="return sendMail(this);" class="col s12" id="contactForm">
-            <div class="modal-content">
-                <h4 class="center-header">Contact Form</h4>
-                <div class="row">
-                    <div class="row">
-                        <div class="input-field col l10 offset-l1 s12">
-                            <!-- Full name field with a requirement of min length of 3 to 50 length-->
-                            <input name="from_fullname" id="from_fullname" type="text" minlength="3" maxlength="50" class="validate" required>
-                            <label for="from_fullname">Full Name*</label>
-                            <span class="helper-text" data-error="Input invalid, min length of 3 to 50 Characters" data-success=""></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col l10 offset-l1 s12">
-                            <!-- User email field with a requirement of min length of 5 to 25 characters  -->
-                            <input name="from_useremail" id="from_useremail" type="text" minlength="5" maxlength="50" class="validate" required>
-                            <label for="from_useremail">Email Address*</label>
-                            <span class="helper-text" data-error="Input invalid, min length of 5 to 50 Characters" data-success=""></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col l10 offset-l1 s12">
-                            <!-- Message subject field with a requirement of min length of 5 to 25 characters -->
-                            <input name="message_subject" id="message_subject" type="text" minlength="5" maxlength="50" class="validate" required>
-                            <label for="message_subject">Message Subject*</label>
-                            <span class="helper-text" data-error="Input invalid, min length of 5 to 50 Characters" data-success=""></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col l10 offset-l1 s12">
-                            <!-- Message area field with a requirement of all characters -->
-                            <textarea name="message_summary" id="message_summary" class="materialize-textarea" required></textarea>
-                            <label for="message_summary">Message*</label>
-                            <span class="helper-text" data-error="Field cannot be blank" data-success=""></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row button-set">
-                    <!-- buttons to either reset the form or to send it -->
-                    <button type="reset" class="col s5 m5 btn-small red accent-1 black-text text-shadow enter">
-                        Clear <i class="fas fa-times-circle"></i>
-                    </button>
-                    <button type="submit" class="col s5 m5 btn-small orange accent-1 black-text text-shadow enter reg">
-                        Send <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Footer with social links and Copyright label-->
-    <footer class="page-footer black-text">
-        <div class="row">
-            <div class="social-media col s12 center">
-                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-                <a href="https://twitter.com/home?lang=en-gb"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.pinterest.co.uk/"><i class="fab fa-pinterest"></i></a>
-                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>                                
-            </div> 
-            <div class="copyright col s12 center">
-                <p>© 2021 Adnan Muhtadi</p>
-            </div>
-        </div>
+    <!-- Footer placeholder -->
+    <footer>
+        
     </footer>
 
-    <!-- jquery from code.jquery.com -->
+    <!-- jquery, src from (code.jquery.com) Update -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- Custom Script -->
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap, src fr om (https://getbootstrap.com/) Update-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap, src fr om (https://getbootstrap.com/) Update-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" 
+            integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    
+    <!-- Custom js script -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/sendEmail.js') }}"></script>
 
     {% block scripts %}
     {% endblock %}
