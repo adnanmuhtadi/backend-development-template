@@ -224,7 +224,7 @@ The method which I used to clone the project was via the terminal as well as Git
 1. Open the repository that needs to be cloned.
 1. On the top-right side of the page, above the files, you will see a button 'Code' with an arrow point down.
 1. Once clicked, a drop-down would appear which would give me the option 'Open with GitHub Desktop' 
-(as I had already pre-installed [GitHub Desktop]() previously).
+(as I had already pre-installed [GitHub Desktop](#) previously).
 1. Once clicked, it would automatically open the application and request where for it to be saved.
 
 #### Step 2 - Create Env.py
