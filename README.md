@@ -10,7 +10,7 @@
 
 ### The Audience
 
-The purpose of this site is to ...
+The intended audience for this project is individuals ...
 
 ### User Objectives
 
