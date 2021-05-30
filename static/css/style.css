@@ -3,30 +3,30 @@
 * {
 }
 
-/*////////////////////////////// (Name of Section)*/
+/* ----------------------------------- (Name of Section)*/
 /* (Name of section with the code) */
 
-/*////////////////////////////// Media Query for Large Laptop size device in a vertical format */
+/* ----------------------------------- Media Query for Large Laptop size device in a vertical format */
 @media only screen and (max-width: 1024px) {
 
 }
 
-/*////////////////////////////// Media Query for tablet size device in a vertical format */
+/* ----------------------------------- Media Query for tablet size device in a vertical format */
 @media only screen and (max-width: 768px) {
 
 }
 
-/*////////////////////////////// Media Query for mobile phone size device in a vertical format */
+/* ----------------------------------- Media Query for mobile phone size device in a vertical format */
 @media only screen and (max-width: 425px) {
 
 }
 
-/*////////////////////////////// Media Query for mobile phone size device in a vertical format */
+/* ----------------------------------- Media Query for mobile phone size device in a vertical format */
 @media only screen and (max-width: 375px) {
 
 }
 
-/*////////////////////////////// Media Query for mobile phone size device in a vertical format */
+/* ----------------------------------- Media Query for mobile phone size device in a vertical format */
 @media only screen and (max-width: 320px) {
 
 }
